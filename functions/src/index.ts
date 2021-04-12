@@ -37,7 +37,8 @@ exports.addClients = functions.https.onRequest((req, res) => {
       const size = listClients.length + 1;
       const { name,lastname,dateBirth,age } = req.body;
       const id = (size).toString().padStart(3, '0')
-      const data = { id, name,lastname,dateBirth,age}
+        const dateRegister = new Date().toString();
+      const data = { id, name,lastname,dateBirth,age,dateRegister}
       await clientsRef.doc(`${id}`).set(data);
       res.json({ message: `Se ha registrado correctamente.` });
     } catch (error) {
